@@ -5,9 +5,5 @@
   "framework": "vite",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "engines": {
-    "node": ">=18.0.0",
-    "pnpm": ">=9.0.0"
-  }
+  ]
 }
