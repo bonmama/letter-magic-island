@@ -1,0 +1,42 @@
+{
+  "name": "letter-magic-island",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "字母魔法岛 - 专为儿童设计的打字学习游戏",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "preinstall": "npx only-allow pnpm",
+    "lint": "eslint",
+    "lint:build": "eslint . --quiet",
+    "lint:style": "stylelint \"src/**/*.css\"",
+    "ts-check": "tsc -p tsconfig.json",
+    "validate": "pnpm dlx concurrently --group --names lint-tsc,lint-build,lint-style \"pnpm ts-check\" \"pnpm lint:build\" \"pnpm lint:style\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.20.2",
+    "autoprefixer": "^10.4.20",
+    "esbuild": "^0.27.2",
+    "eslint": "^9.0.0",
+    "eslint-import-resolver-node": "^0.4.0",
+    "eslint-plugin-import": "^2.32.0",
+    "only-allow": "^1.2.2",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "^8.70.0",
+    "vite": "^7.2.4"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "pnpm": ">=9.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild": "^0.27.2",
+      "is-generator-function": "1.0.10"
+    }
+  }
+}

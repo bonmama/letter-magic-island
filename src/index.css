@@ -1,0 +1,1419 @@
+/* ============================================
+   🌈 字母魔法岛 - 游戏样式
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Comic Sans MS', 'Microsoft YaHei', cursive, sans-serif;
+  user-select: none;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+.game-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#gameCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.ui-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* 通用屏幕样式 */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  pointer-events: auto;
+  overflow-y: auto;
+}
+
+/* 返回按钮 */
+.btn-back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 3px solid #FFB6C1;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #FF6B9D;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  z-index: 100;
+}
+
+.btn-back:hover {
+  background: #FFB6C1;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* 屏幕标题 */
+.screen-title {
+  font-size: 36px;
+  color: #FF6B9D;
+  text-shadow: 2px 2px 0 #fff, 4px 4px 0 rgba(255, 107, 157, 0.3);
+  margin-bottom: 10px;
+}
+
+.screen-subtitle {
+  font-size: 18px;
+  color: #888;
+  margin-bottom: 30px;
+}
+
+/* ========== 按钮样式 ========== */
+.btn {
+  border: none;
+  border-radius: 25px;
+  padding: 14px 32px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #FF8DB8 0%, #FF6B9D 100%);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(180deg, #FFA0C5 0%, #FF7FAC 100%);
+}
+
+.btn-secondary {
+  background: linear-gradient(180deg, #B8E0FF 0%, #7DC8FF 100%);
+  color: #1A5F9E;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(180deg, #CCE8FF 0%, #9AD5FF 100%);
+}
+
+.btn-large {
+  padding: 18px 48px;
+  font-size: 24px;
+  border-radius: 30px;
+}
+
+/* ========== 主菜单 ========== */
+.menu-screen {
+  justify-content: flex-start;
+  padding-top: 60px;
+}
+
+.title-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.title-emoji {
+  font-size: 60px;
+  margin-bottom: 10px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.game-title {
+  font-size: 52px;
+  background: linear-gradient(90deg, #FF6B9D, #FFD93D, #6BCB77, #4D96FF, #9B59B6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(3px 3px 0 rgba(255, 255, 255, 0.8));
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: #666;
+}
+
+.character-display {
+  margin: 30px 0;
+}
+
+.character-bubble {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 30px;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 30px rgba(255, 107, 157, 0.2);
+  border: 4px solid #FFE5EC;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.char-emoji {
+  font-size: 80px;
+  margin-bottom: 10px;
+}
+
+.char-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FF6B9D;
+}
+
+.menu-stats {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 15px 25px;
+  text-align: center;
+  min-width: 100px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.stat-icon {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: bold;
+  color: #FF6B9D;
+  display: block;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #999;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.menu-buttons .btn {
+  width: 100%;
+}
+
+.footer-text {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* 打字段位徽章 */
+.rank-badge {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 20px;
+  padding: 15px 25px;
+  margin-top: 20px;
+  text-align: center;
+  min-width: 280px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 3px solid #FFF0E5;
+}
+
+.rank-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: #FF6B9D;
+  margin-bottom: 8px;
+}
+
+.rank-progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #F0F0F0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.rank-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FFD93D, #FF9A5C, #FF6B9D);
+  border-radius: 5px;
+  transition: width 0.4s ease;
+}
+
+.rank-hint {
+  font-size: 13px;
+  color: #999;
+}
+
+/* ========== 模式选择 ========== */
+.mode-screen {
+  justify-content: flex-start;
+  padding-top: 80px;
+}
+
+.mode-cards {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.mode-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 25px;
+  padding: 30px;
+  width: 240px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 4px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.mode-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.mode-learn { border-color: #6BCB77; }
+.mode-practice { border-color: #FFD93D; }
+.mode-endless { border-color: #FF6B9D; }
+
+.mode-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+}
+
+.mode-card h3 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.mode-learn h3 { color: #4A9D4A; }
+.mode-practice h3 { color: #E5A500; }
+.mode-endless h3 { color: #FF6B9D; }
+
+.mode-card p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  min-height: 45px;
+}
+
+.mode-tag {
+  display: inline-block;
+  background: #F0F0F0;
+  color: #888;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+.btn-mode {
+  width: 100%;
+}
+
+/* ========== 关卡选择 ========== */
+.level-screen {
+  justify-content: flex-start;
+  padding-top: 80px;
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  width: 100%;
+  padding: 10px;
+}
+
+.level-item {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 3px solid #FFE5EC;
+  transition: all 0.2s ease;
+}
+
+.level-item:hover:not(.locked) {
+  transform: translateY(-5px);
+  border-color: #FF6B9D;
+  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.2);
+}
+
+.level-item.locked {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.level-number {
+  font-size: 40px;
+  font-weight: bold;
+  color: #FF6B9D;
+  margin-bottom: 8px;
+}
+
+.level-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.level-letters {
+  font-size: 14px;
+  color: #888;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  font-family: monospace;
+  word-break: break-all;
+  line-height: 1.5;
+  padding: 0 6px;
+  white-space: normal;
+}
+
+/* 长字母组（全部字母）缩小字号避免出界 */
+.level-letters.long {
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.level-target {
+  font-size: 13px;
+  color: #6BCB77;
+  font-weight: bold;
+}
+
+.level-lock {
+  font-size: 13px;
+  color: #999;
+}
+
+/* ========== 角色选择 ========== */
+.char-screen {
+  justify-content: flex-start;
+  padding-top: 80px;
+}
+
+.chars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  width: 100%;
+  padding: 10px;
+}
+
+.char-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 4px solid;
+  transition: all 0.2s ease;
+}
+
+.char-card:hover:not(.locked) {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.char-card.selected {
+  box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.3), 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.char-card.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.char-emoji-big {
+  font-size: 60px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+}
+
+.char-card h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.char-desc {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 12px;
+  min-height: 36px;
+}
+
+.char-status {
+  font-size: 13px;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.selected-tag {
+  background: #6BCB77;
+  color: white;
+}
+
+.select-tag {
+  background: #E8F4FD;
+  color: #4D96FF;
+}
+
+.locked-tag {
+  background: #F0F0F0;
+  color: #999;
+}
+
+/* ========== 游戏HUD ========== */
+.game-hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.hud-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px 20px;
+  background: none;
+}
+
+.hud-lives {
+  font-size: 28px;
+  letter-spacing: 2px;
+  background: rgba(255, 255, 255, 0.55);
+  padding: 4px 14px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.hud-left, .hud-right {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.hud-right {
+  pointer-events: auto;
+}
+
+.hud-item {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 8px 16px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  min-width: 70px;
+}
+
+.hud-label {
+  display: block;
+  font-size: 12px;
+  color: #999;
+}
+
+.hud-value {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  color: #FF6B9D;
+}
+
+.combo-value {
+  color: #FF9A5C;
+  transition: transform 0.2s;
+}
+
+@keyframes comboPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.hud-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.hud-lives {
+  font-size: 28px;
+  letter-spacing: 2px;
+  width: fit-content;
+  max-width: 100%;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+@keyframes heartShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.hud-target {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.progress-bar {
+  width: 150px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FFD93D, #FF9A5C);
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+.target-text {
+  font-size: 13px;
+  color: #666;
+  font-weight: bold;
+}
+
+.btn-pause {
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s;
+}
+
+.btn-pause:hover {
+  transform: scale(1.1);
+}
+
+/* ========== 暂停菜单 ========== */
+.pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  backdrop-filter: blur(4px);
+}
+
+.pause-menu {
+  background: white;
+  border-radius: 30px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  min-width: 280px;
+}
+
+.pause-menu h2 {
+  font-size: 32px;
+  color: #FF6B9D;
+  margin-bottom: 25px;
+}
+
+.pause-menu .btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+/* ========== 结果画面 ========== */
+.result-screen {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+.result-card {
+  background: white;
+  border-radius: 30px;
+  padding: 40px 50px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  max-width: 450px;
+  width: 90%;
+  animation: popIn 0.5s ease;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.result-emoji {
+  font-size: 80px;
+  margin-bottom: 10px;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.result-title {
+  font-size: 36px;
+  color: #FF6B9D;
+  margin-bottom: 20px;
+}
+
+.result-stars {
+  font-size: 48px;
+  margin-bottom: 25px;
+  letter-spacing: 8px;
+}
+
+.new-record {
+  background: linear-gradient(90deg, #FFD700, #FFA500);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.result-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.result-stat {
+  background: #F9F9F9;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.result-stat-label {
+  display: block;
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.result-stat-value {
+  display: block;
+  font-size: 28px;
+  font-weight: bold;
+  color: #FF6B9D;
+}
+
+.result-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.result-buttons .btn {
+  width: 100%;
+}
+
+/* ========== 游戏说明 ========== */
+.howto-screen {
+  justify-content: flex-start;
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.howto-content {
+  max-width: 700px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.howto-section {
+  margin-bottom: 25px;
+}
+
+.howto-section h3 {
+  font-size: 22px;
+  color: #FF6B9D;
+  margin-bottom: 12px;
+}
+
+.howto-section p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.7;
+}
+
+.howto-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.howto-section li {
+  font-size: 15px;
+  color: #555;
+  padding: 6px 0 6px 25px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.howto-section li::before {
+  content: '✨';
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+
+.mode-tips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.mode-tip {
+  background: #F9F9F9;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.mode-tip h4 {
+  font-size: 16px;
+  color: #FF6B9D;
+  margin-bottom: 8px;
+}
+
+.mode-tip p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.howto-tip {
+  background: linear-gradient(90deg, #FFF5E6, #FFE5EC);
+  border-radius: 15px;
+  padding: 15px 20px;
+  font-size: 15px;
+  color: #666;
+  margin-top: 20px;
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 768px) {
+  .game-title {
+    font-size: 36px;
+  }
+
+  .title-emoji {
+    font-size: 48px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .screen-title {
+    font-size: 28px;
+  }
+
+  .char-emoji {
+    font-size: 60px;
+  }
+
+  .mode-cards {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .mode-card {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .levels-grid, .chars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hud-item {
+    padding: 6px 12px;
+    min-width: 55px;
+  }
+
+  .hud-value {
+    font-size: 18px;
+  }
+
+  .hud-lives {
+    font-size: 22px;
+  }
+
+  .progress-bar {
+    width: 100px;
+  }
+
+  .result-card {
+    padding: 30px 25px;
+  }
+
+  .result-title {
+    font-size: 28px;
+  }
+
+  .result-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mode-tips {
+    grid-template-columns: 1fr;
+  }
+
+  .howto-content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-stats {
+    gap: 15px;
+  }
+
+  .stat-item {
+    padding: 10px 15px;
+    min-width: 80px;
+  }
+
+  .stat-value {
+    font-size: 22px;
+  }
+
+  .btn-large {
+    padding: 14px 36px;
+    font-size: 20px;
+  }
+
+  .levels-grid, .chars-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== 速度选择 & 段位卡 ===== */
+.setup-label {
+  font-size: 16px;
+  color: #8a6c4f;
+  margin: 14px 0 8px;
+  letter-spacing: 1px;
+}
+
+.speed-selector {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 8px 0 4px;
+}
+
+.speed-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 12px 16px;
+  border: 3px solid #e8d5c3;
+  border-radius: 16px;
+  background: #fff7ef;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s, background 0.15s;
+  min-width: 96px;
+}
+
+.speed-option:hover {
+  transform: translateY(-2px);
+}
+
+.speed-option.active {
+  border-color: #FF9A5C;
+  background: #ffe3c8;
+  box-shadow: 0 3px 10px rgba(255, 154, 92, 0.3);
+}
+
+.speed-emoji {
+  font-size: 28px;
+}
+
+.speed-name {
+  font-size: 15px;
+  font-weight: bold;
+  color: #6b4b2f;
+}
+
+.speed-desc {
+  font-size: 11px;
+  color: #b39b82;
+  text-align: center;
+}
+
+.mode-card.mode-word {
+  border: 3px solid #5CC8CE;
+  box-shadow: 0 6px 18px rgba(92, 200, 206, 0.25);
+}
+.mode-card.mode-word h3 { color: #2FA8AE; }
+
+/* 无尽挑战：内容切换（字母 / 生字） */
+.content-toggle {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.content-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #7a6a58;
+  background: #fff;
+  border: 3px solid #e8d8c3;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.content-option .content-emoji { font-size: 22px; }
+.content-option.active {
+  background: linear-gradient(135deg, #ffe9f2, #ffd6ea);
+  border-color: #FF6B9D;
+  color: #d14583;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 107, 157, 0.3);
+}
+
+/* 无尽挑战：难度选择卡片 */
+.difficulty-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin: 6px 0 22px;
+}
+.difficulty-item {
+  flex: 1 1 200px;
+  max-width: 240px;
+  background: #fff;
+  border: 3px solid #e8d8c3;
+  border-radius: 20px;
+  padding: 18px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+.difficulty-item:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(0,0,0,0.1); }
+.difficulty-item .mode-icon { font-size: 40px; margin-bottom: 6px; }
+.difficulty-item h3 { font-size: 19px; color: #6b5a48; margin: 4px 0 8px; }
+.difficulty-item .diff-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 14px;
+  color: #a08c76;
+}
+.difficulty-item.active {
+  background: linear-gradient(135deg, #fff0f6, #ffd6ea);
+  border-color: #FF6B9D;
+  transform: scale(1.04);
+  box-shadow: 0 8px 20px rgba(255, 107, 157, 0.35);
+}
+.difficulty-item.active h3 { color: #d14583; }
+
+/* 主菜单：星星 + 段位 合并成长卡 */
+.growth-card {
+  background: linear-gradient(135deg, #fff7ef, #ffe9d6);
+  border: 3px solid #ffd29a;
+  border-radius: 20px;
+  padding: 14px 18px;
+  margin: 14px auto 4px;
+  max-width: 360px;
+  text-align: left;
+  box-shadow: 0 3px 12px rgba(255, 154, 92, 0.15);
+}
+.growth-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.growth-medal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.growth-stars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border-radius: 999px;
+  padding: 6px 14px;
+  box-shadow: 0 2px 8px rgba(255, 200, 60, 0.35);
+}
+.growth-stars .stat-icon { font-size: 22px; }
+.growth-stars .stat-value { font-size: 20px; font-weight: 800; color: #f0a500; }
+.growth-stars-note {
+  font-size: 12px;
+  color: #c08a4a;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.practice-note {
+  font-size: 12px;
+  color: #b39b82;
+}
+
+.medal-card {
+  background: linear-gradient(135deg, #fff7ef, #ffe9d6);
+  border: 3px solid #ffd29a;
+  border-radius: 18px;
+  padding: 14px 18px;
+  margin: 14px auto 4px;
+  max-width: 360px;
+  text-align: left;
+  box-shadow: 0 3px 12px rgba(255, 154, 92, 0.15);
+}
+
+.medal-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.medal-emoji {
+  font-size: 34px;
+}
+
+.medal-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.medal-name {
+  font-size: 19px;
+  font-weight: bold;
+  color: #6b4b2f;
+}
+
+.medal-count {
+  font-size: 12px;
+  color: #b39b82;
+}
+
+.medal-progress-bar {
+  height: 12px;
+  background: #ffe3c8;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 10px 0 6px;
+}
+
+.medal-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FF9A5C, #FF6B9D);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.medal-next, .medal-max {
+  font-size: 13px;
+  color: #6b4b2f;
+  font-weight: 500;
+}
+
+/* ===== 主菜单：当前玩家胶囊 ===== */
+.player-chip {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid #ffd9b3;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #6b5a48;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  transition: all 0.15s ease;
+  z-index: 5;
+}
+.player-chip:hover { transform: scale(1.05); border-color: #FF9A5C; }
+.player-chip-emoji { font-size: 20px; }
+.player-chip-switch { font-size: 12px; color: #FF6B9D; background: #ffe9f2; padding: 2px 8px; border-radius: 999px; }
+
+/* ===== 玩家选择 ===== */
+.player-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin: 18px 0;
+}
+.player-card {
+  position: relative;
+  width: 130px;
+  background: #fff;
+  border: 3px solid #e8d8c3;
+  border-radius: 20px;
+  padding: 16px 10px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+.player-card:hover { transform: translateY(-4px); box-shadow: 0 8px 18px rgba(0,0,0,0.12); }
+.player-card.selected {
+  border-color: #FF6B9D;
+  background: linear-gradient(135deg, #fff0f6, #ffe3f0);
+  box-shadow: 0 8px 20px rgba(255,107,157,0.3);
+}
+.player-avatar { font-size: 42px; line-height: 1; }
+.player-name { font-size: 17px; font-weight: 800; color: #6b5a48; margin-top: 6px; }
+.player-meta { font-size: 11px; color: #a08c76; margin-top: 4px; }
+.player-badge {
+  margin-top: 6px;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: #FF6B9D;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+.player-delete {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: #f0e6dc;
+  color: #c0a892;
+  font-size: 12px;
+  cursor: pointer;
+  line-height: 1;
+}
+.player-delete:hover { background: #FF6B6B; color: #fff; }
+
+.new-player-card {
+  background: linear-gradient(135deg, #fff7ef, #ffefd9);
+  border: 3px dashed #ffc98f;
+  border-radius: 20px;
+  padding: 18px;
+  max-width: 420px;
+  margin: 8px auto 16px;
+  text-align: center;
+}
+.new-player-card h3 { color: #c06d2f; margin-bottom: 12px; }
+.player-name-input {
+  width: 90%;
+  padding: 11px 14px;
+  font-size: 16px;
+  border: 2px solid #ffd9b3;
+  border-radius: 12px;
+  text-align: center;
+  outline: none;
+  margin-bottom: 12px;
+}
+.player-name-input:focus { border-color: #FF9A5C; }
+.avatar-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.avatar-option {
+  font-size: 24px;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.avatar-option:hover { transform: scale(1.1); }
+.avatar-option.active { border-color: #FF6B9D; background: #ffe9f2; transform: scale(1.1); }
+.player-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ===== 龙虎榜 ===== */
+.board-list {
+  max-width: 460px;
+  margin: 18px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.board-row {
+  display: grid;
+  grid-template-columns: 36px 40px 1fr auto;
+  grid-template-areas:
+    "rank avatar name score"
+    "rank avatar sub sub";
+  align-items: center;
+  gap: 4px 10px;
+  background: #fff;
+  border: 2px solid #eee0cf;
+  border-radius: 16px;
+  padding: 10px 16px;
+}
+.board-row.me { border-color: #FF6B9D; background: linear-gradient(135deg, #fff0f6, #ffeaf3); }
+.board-rank { grid-area: rank; font-size: 24px; text-align: center; }
+.board-avatar { grid-area: avatar; font-size: 30px; text-align: center; }
+.board-name { grid-area: name; font-size: 17px; font-weight: 800; color: #6b5a48; }
+.board-me-tag { font-size: 12px; color: #FF6B9D; }
+.board-score { grid-area: score; font-size: 20px; font-weight: 900; color: #FF9A5C; }
+.board-sub { grid-area: sub; font-size: 12px; color: #a08c76; }
+.board-empty { text-align: center; color: #a08c76; padding: 30px; }
+
+
+/* 改名按钮（玩家卡片左上角） */
+.player-edit {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: #e6f4ff;
+  color: #4D96FF;
+  font-size: 11px;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.player-edit:hover { background: #4D96FF; }
+
+/* 单词长度提示 */
+.word-len-hint {
+  text-align: center;
+  font-size: 14px;
+  color: #8a7a66;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  padding: 8px 14px;
+  margin: 12px auto 0;
+  max-width: 460px;
+}
