@@ -7,7 +7,16 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "preinstall": "npx only-allow pnpm",
+    "scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+  "lint": "eslint",
+  "lint:build": "eslint . --quiet",
+  "lint:style": "stylelint \"src/**/*.css\"",
+  "ts-check": "tsc -p tsconfig.json",
+  "validate": "pnpm dlx concurrently --group --names lint-tsc,lint-build,lint-style \"pnpm ts-check\" \"pnpm lint:build\" \"pnpm lint:style\""
+},
     "lint": "eslint",
     "lint:build": "eslint . --quiet",
     "lint:style": "stylelint \"src/**/*.css\"",
